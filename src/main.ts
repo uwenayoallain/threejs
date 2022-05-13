@@ -24,9 +24,15 @@ function addStar() {
         color: 0xffffff
     });
     const star = new THREE.Mesh(geometry, material);
+    const [x, y, z] = Array(3).fill(undefined).map(() => THREE.MathUtils.randFloatSpread(100));
+    star.position.set(x, y, z);
     scene.add(star);
 }
 
+Array(200).fill(undefined).forEach(addStar);
+
+const skyTexture = new THREE.TextureLoader().load('https://images.unsplash.com/photo-1517928260182-5688aead3066?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80');
+scene.background = skyTexture
 const geometry = new THREE.TorusGeometry(10, 3, 16, 100);
 const material = new THREE.MeshStandardMaterial({ color: 0x00ff00 });
 const torus = new THREE.Mesh(geometry, material);
@@ -39,7 +45,6 @@ scene.add(pointLight, ambientLight);
 const gridHelper = new THREE.GridHelper(200, 50);
 const lightHelper = new THREE.PointLightHelper(pointLight);
 scene.add(lightHelper, gridHelper);
-addStar();
 function animate() {
     requestAnimationFrame(animate);
     torus.rotation.x += 0.01;
