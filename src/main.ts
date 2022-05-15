@@ -26,11 +26,12 @@ function addStar() {
     const star = new THREE.Mesh(geometry, material);
     const [x, y, z] = Array(3).fill(undefined).map(() => THREE.MathUtils.randFloatSpread(100));
     star.position.set(x, y, z);
+    scene.add(star);
 }
 
 Array(200).fill(undefined).forEach(addStar);
 
-const skyTexture = new THREE.TextureLoader().load('https://images.unsplash.com/photo-1517928260182-5688aead3066?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80');
+const skyTexture = new THREE.TextureLoader().load('https://images.unsplash.com/photo-1610505466122-b1d9482901ef?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=435&q=80');
 scene.background = skyTexture
 const geometry = new THREE.TorusGeometry(10, 3, 16, 100);
 const material = new THREE.MeshStandardMaterial({ color: 0x00ff00 });
